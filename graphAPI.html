@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<!-- <script src="./graphAPI.js"></script> -->
+<script>
+    var url =
+  "https://login.microsoftonline.com/5fd26191-ce3b-435a-ab5c-4b9594508c45/oauth2/v2.0/token";
+var params = new URLSearchParams();
+// grant_type:client_credentials
+// client_id:ffa2f86e-6bc2-4dce-83b1-938715bcecec
+// client_secret:pkj8Q~4TSmm8NtZ0Rzt_fPwClhMWUdpVRG5xgbmU
+// scope:https://graph.microsoft.com/.default
+
+params.append("grant_type", "client_credentials");
+params.append("client_id", "ffa2f86e-6bc2-4dce-83b1-938715bcecec");
+params.append("client_secret", "pkj8Q~4TSmm8NtZ0Rzt_fPwClhMWUdpVRG5xgbmU");
+params.append("scope", "https://graph.microsoft.com/.default");
+
+fetch(url, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+  body: params,
+})
+  .then(function (response) {
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    return response.json();
+  })
+  .then(function (responseData) {
+    console.log("response after fetch ", responseData);
+    // Process the responseData here
+  })
+  .catch(function (error) {
+    console.error(
+      "There was a problem with the fetch operation:",
+      error.message
+    );
+  });
+
+</script>
+<body>
+    
+</body>
+</html>
